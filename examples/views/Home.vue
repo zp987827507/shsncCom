@@ -1,4 +1,5 @@
 <template>
+    <!-- home页面 -->
     <div class="home">
         <z-bar
             style="width: 500px;height: 400px;"
