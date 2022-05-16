@@ -1,6 +1,6 @@
 module.exports = {
     title: '公用组件文档',
-    //base:'shsncCom',
+    base: '/shsncCom/',
     themeConfig: {
         nav: [
             {
