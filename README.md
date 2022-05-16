@@ -1,24 +1,20 @@
-# demo
+# 说明
 
-## Project setup
-```
-yarn install
-```
+-   docs 目录为组件库文档目录
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+```js
+//打包组件库文档
+npm run docs:build
 ```
 
-### Compiles and minifies for production
+-   examples 为开发组件库测试 demo 文件
+
 ```
-yarn build
+开发完组件在examples下测试通过后再打包发布
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+-   packages 为组件库文件
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+开发组件库在packages目录下  要支持全局引入和单独按需引入
+```
