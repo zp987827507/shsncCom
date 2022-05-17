@@ -56,7 +56,7 @@
 </script>
 ```
 
-#### 1.基本
+##### 1.基本
 
 ```html
 <z-line :data="lineData" style="width: 600px; height: 400px;"></z-line>
@@ -64,7 +64,7 @@
 
 <line-md :data="lineData" style="width: 600px; height: 400px;"></line-md>
 
-#### 2.设置颜色、显示填充色、显示数值
+##### 2.设置颜色、显示填充色、显示数值
 
 ```html
 <z-line style="width: 600px;height: 400px;" :data="lineData" :config="config1"> </z-line>
@@ -76,7 +76,7 @@
     :config="config1">
 </line-md>
 
-#### 3.线柱混合
+##### 3.线柱混合
 
 ```html
 <z-line style="width: 600px;height: 400px;" :data="lineData1"> </z-line>
@@ -84,7 +84,7 @@
 
 <line-md style="width: 600px;height: 400px;" :data="lineData1"> </line-md>
 
-#### 4.标准线
+##### 4.标准线
 
 ```html
 <z-line style="width: 600px;height: 400px;" :data="lineData1" :config="config2"> </z-line>

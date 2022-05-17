@@ -4,7 +4,7 @@
 
     'click', 'dblclick', 'mouseover', 'mouseout', 'mousemove', 'mousedown', 'mouseup'
 
-> 备注： 事件参数参考[echarts 文档](https://echarts.apache.org/zh/index.html)
+> 备注： 事件参数参考[echarts 文档](https://echarts.apache.org/zh/api.html#events)
 
 #### 示例
 

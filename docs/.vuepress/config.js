@@ -38,7 +38,7 @@ module.exports = {
                 path: '/componentsDocs/bar', // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 collapsable: false, // 是否折叠 默认true折叠
                 sidebarDepth: 1, // 可选的, 默认值是 1
-                children: ['/componentsDocs/bar', '/componentsDocs/line'],
+                children: ['/componentsDocs/chart', '/componentsDocs/bar', '/componentsDocs/line'],
             },
             {
                 title: '业务组件',

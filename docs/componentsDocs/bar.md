@@ -57,7 +57,7 @@
 </script>
 ```
 
-#### 1.基本
+##### 1.基本
 
 ```html
 <z-bar style="width: 500px;height: 400px;" :data="data"></z-bar>
@@ -65,7 +65,7 @@
 
 <bar-md style="width: 500px;height: 400px;" :data="data"></bar-md>
 
-#### 2.显示数值和单位
+##### 2.显示数值和单位
 
 ```html
 <z-bar style="width: 500px;height: 400px;" :data="data" :config="config"></z-bar>
@@ -73,7 +73,7 @@
 
 <bar-md style="width: 500px;height: 400px;" :data="data" :config="config"></bar-md>
 
-#### 3.线柱混合
+##### 3.线柱混合
 
 ```html
 <z-bar style="width: 500px;height: 400px;" :data="data2"></z-bar>
@@ -133,8 +133,6 @@
         },
     }
 </script>
-
-### 代码
 
 ### data 数据
 
