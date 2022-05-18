@@ -74,7 +74,7 @@ style="width: 400px;height: 300px;"></pie-md>
         type: 'rose',
         showLegend: true
     }"
-    style="width: 50s0px;height: 300px;"
+    style="width: 50px;height: 300px;"
 ></z-pie>
 ```
 
