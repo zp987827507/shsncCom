@@ -325,3 +325,117 @@ export const renderLine = (data, configObj, opt) => {
 
     return option
 }
+
+/**
+ * 饼图
+ *
+ * @param {[]} data   标题的series数据
+ * @param {Object} configObj
+ * @param {Object} [configObj.el] 图表绑定的dom元素，不传时返回option配置项
+ * @param {String} [configObj.color]    颜色
+ * @param {Boolean} [configObj.showLegend=false]    是否显示图例
+ * @param {Boolean} [configObj.showLabel=true]    是否显示线条文字
+ * @param {String} [configObj.title]    中间的标题
+ * @param {String} [configObj.showNullLabel]    是否显示无数据项的连线标签 默认 false
+ * @param {String} [configObj.subtext]    标题 一般放数值
+ * @param {String} [configObj.type='circle']     半径  实心圆circle， 圆环ring  玫瑰图rose
+ * @param {Object} [opt]   自定义图表option中的属性
+ * @return {Object} [option] option配置项
+ */
+export const renderPie = (data, configObj, opt) => {
+    if (!data || data.length === 0) {
+        return getNoDataOption()
+    }
+
+    configObj.showLabel = configObj.showLabel !== false
+
+    //半径
+    if (configObj.type === 'ring') {
+        configObj.radius = configObj.showLabel ? ['40%', '60%'] : ['50%', '70%']
+    } else {
+        configObj.radius = configObj.showLabel ? '60%' : '70%'
+    }
+
+    //无数据的部分不显示label和连线
+    data.forEach((v, i) => {
+        if (v && (!v.value || isNaN(v.value))) {
+            data[i].value = 0
+            if (!configObj.showNullLabel) {
+                data[i].label = {
+                    show: false,
+                }
+                data[i].labelLine = {
+                    show: false,
+                }
+            }
+        }
+    })
+    let option = {
+        textStyle: {
+            color: null, //避免全局字体颜色覆盖饼图颜色
+        },
+        legend: {
+            show: configObj.showLegend,
+            ...LEGEND(),
+        },
+        title: {
+            left: 'center',
+            top: 'center',
+            text: configObj.title,
+            subtext: configObj.subtext,
+            textStyle: {
+                lineHeight: CONFIG.FONT_L,
+                color: CONFIG.FONT_COLOR,
+                fontWeight: 400,
+            },
+            subtextStyle: {
+                fontSize: CONFIG.FONT_L,
+            },
+        },
+        color: getColor(configObj.color),
+        tooltip: {
+            formatter: function (v) {
+                return v.name + '：' + v.value + '%'
+            },
+        },
+        series: [
+            {
+                name: '',
+                type: 'pie',
+                radius: configObj.radius,
+                roseType: configObj.type === 'rose',
+                center: ['50%', '50%'],
+                label: {
+                    show: configObj.showLabel,
+                },
+                itemStyle: {
+                    normal: {
+                        //shadowColor: 'rgba(0,0,0,0.4)',
+                        shadowBlur: 0,
+                    },
+                },
+                labelLine: {
+                    show: configObj.showLabel,
+                },
+                data: data,
+            },
+        ],
+    }
+    if (configObj.showLabel) {
+        option.series[0].label = {
+            show: true,
+            formatter: function (params) {
+                return params.name + ':' + params.value + '%'
+            },
+        }
+    }
+    if (opt) {
+        _merge(option, opt)
+    }
+
+    if (configObj.el) {
+        echarts.init(configObj.el).setOption(option, true)
+    }
+
+    return option
+}

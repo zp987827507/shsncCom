@@ -1,7 +1,19 @@
 <template>
     <!-- home页面 -->
     <div class="home">
-        <z-bar
+        <z-pie
+            :data="pieData"
+            style="width: 400px;height: 400px;"
+            :config="{
+            color: 'pieColor',
+            type: 'rose',
+            title: '总个数\n300',
+            showLabel:false,
+            showLegend: true,
+            showNullLabel:true
+        }"
+        ></z-pie>
+        <!-- <z-bar
             style="width: 500px;height: 400px;"
             :option="option"
             :config="{
@@ -25,9 +37,9 @@
                     }
                 ]
             }"
-        ></z-bar>
+        ></z-bar>-->
 
-        <z-line
+        <!-- <z-line
             style="width: 600px;height: 400px;"
             :data="lineData"
             :config="{
@@ -38,7 +50,7 @@
             }"
         ></z-line>
 
-        <z-chart style="width: 600px;height: 400px;" :option="option2" show-option></z-chart>
+        <z-chart style="width: 600px;height: 400px;" :option="option2"></z-chart>-->
     </div>
 </template>
 
@@ -47,6 +59,14 @@ export default {
     name: 'home',
     data() {
         return {
+            pieData: [
+                { name: 'Ⅰ类', value: 5 },
+                { name: 'Ⅱ类', value: 5 },
+                { name: 'Ⅲ类', value: 30 },
+                { name: 'Ⅳ类', value: 20 },
+                { name: 'Ⅴ类', value: 10 },
+                { name: '劣Ⅴ类', value: 2 },
+            ],
             option: {
                 xAxis: {
                     axisLabel: {
@@ -175,12 +195,12 @@ export default {
     },
     created() {
         //全局配置
-        this.$zChart.setChartConfig({
-            FONT_COLOR: '#faf',
-            //BORDER_COLOR: '#afa',
-            FONT_S: 18,
-            SHOW_TOOLBOX: true,
-        })
+        // this.$zChart.setChartConfig({
+        //     FONT_COLOR: '#faf',
+        //     //BORDER_COLOR: '#afa',
+        //     FONT_S: 18,
+        //     SHOW_TOOLBOX: true,
+        // })
     },
 }
 </script>

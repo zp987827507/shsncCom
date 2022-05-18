@@ -5,10 +5,11 @@ import zTable from './components/table/index'
 import zBar from './components/bar/index'
 import zLine from './components/line/index'
 import zChart from './components/zChart/index'
+import zPie from './components/pie/index'
 import { setChartConfig } from './src/util/nomalChart'
 
 let echarts = require('echarts')
-const components = [zButton, zTable, zBar, zLine, zChart]
+const components = [zButton, zTable, zBar, zLine, zChart, zPie]
 const install = (app) => {
     components.forEach((e) => {
         app.use(e)
@@ -27,6 +28,6 @@ const SHSNC = {
     install,
 }
 //支持按需导入
-export { zButton, zTable, zBar, zLine, zChart }
+export { zButton, zTable, zBar, zLine, zChart, zPie }
 //导入ZPUI拿到所有的组件
 export default SHSNC
