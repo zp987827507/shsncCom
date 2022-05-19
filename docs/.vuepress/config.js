@@ -45,6 +45,7 @@ module.exports = {
                     '/componentsDocs/pie',
                     '/componentsDocs/stackbar',
                     '/componentsDocs/dashboard',
+                    '/componentsDocs/cylinder',
                 ],
             },
             {

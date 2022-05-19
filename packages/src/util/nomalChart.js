@@ -605,3 +605,116 @@ export const dashboardchart = (configObj, opt) => {
 
     return option
 }
+
+/**
+ * 圆柱图
+ * data  Object  图表数据 必须,
+ *   xAxis 必须
+ *   data 必须
+ * configObj  Object
+ *   属性如下：
+ *   el 图表绑定的dom元素 可选 不传时返回option配置项
+ *   color  Array  颜色 可选
+ *   unit   String  数值单位 可选
+ *   barWidth Number 柱宽 可选
+ * opt Object  自定义图表option中的属性
+ * */
+export const renderCylinderBar = (data, configObj, opt) => {
+    if (!data || !data.data || data.data.length === 0) {
+        return getNoDataOption()
+    }
+
+    let barWidth = configObj.barWidth || 30
+    let color = getColor(configObj.color)
+    let seriesData = []
+    if (configObj.color) {
+        data.data.forEach((v, i) => {
+            seriesData.push({
+                value: v,
+                itemStyle: {
+                    color: color[i] || color[0],
+                },
+            })
+        })
+    } else {
+        seriesData = data.data
+    }
+    let option = {
+        color: color.slice(0, 1),
+        grid: {
+            containLabel: true,
+            left: 0,
+        },
+        xAxis: {
+            type: 'category',
+            data: data.xAxis,
+            offset: 5,
+            axisLabel: {
+                interval: 0,
+                textStyle: {
+                    fontSize: CONFIG.FONT_S,
+                },
+            },
+            axisTick: {
+                show: false,
+            },
+            axisLine: {
+                show: false,
+            },
+        },
+        yAxis: {
+            show: false,
+        },
+        series: [
+            {
+                type: 'pictorialBar',
+                symbolSize: [barWidth, 10],
+                symbolOffset: [0, -5],
+                symbolPosition: 'end',
+                z: 12,
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: CONFIG.FONT_COLOR,
+                        },
+                        show: true,
+                        position: 'top',
+                        formatter: '{c}' + (configObj.unit || ''),
+                    },
+                },
+                silent: true,
+                data: seriesData,
+            },
+            {
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [barWidth, 10],
+                symbolOffset: [0, 5],
+                z: 12,
+                data: seriesData,
+                silent: true,
+            },
+            {
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        opacity: 0.8,
+                    },
+                },
+                barWidth: barWidth,
+                silent: true,
+                data: seriesData,
+            },
+        ],
+    }
+
+    if (opt) {
+        _merge(option, opt)
+    }
+
+    if (configObj.el) {
+        echarts.init(configObj.el).setOption(option, true)
+    }
+
+    return option
+}
