@@ -57,7 +57,8 @@ const getColor = (color) => {
     }
 }
 //坐标轴样式
-export const AXIS_STYLE = () => {
+export const AXIS_STYLE = (isSplitShow) => {
+    let splitShow = isSplitShow === 'y' ? false : true
     return {
         nameTextStyle: {
             color: CONFIG.FONT_COLOR,
@@ -76,7 +77,7 @@ export const AXIS_STYLE = () => {
             show: true,
         },
         splitLine: {
-            show: true,
+            show: splitShow,
             lineStyle: {
                 type: 'dashed',
             },
@@ -197,10 +198,7 @@ export const renderBar = (data, configObj, opt) => {
             containLabel: true,
         },
         xAxis: {
-            ...AXIS_STYLE(),
-            splitLine: {
-                show: false,
-            },
+            ...AXIS_STYLE('y'),
             data: data.xAxis,
             type: 'category',
         },
@@ -293,10 +291,7 @@ export const renderLine = (data, configObj, opt) => {
             containLabel: true,
         },
         xAxis: {
-            ...AXIS_STYLE(),
-            splitLine: {
-                show: false,
-            },
+            ...AXIS_STYLE('y'),
             data: data.xAxis,
             type: 'category',
             boundaryGap: hasBar,
@@ -429,6 +424,84 @@ export const renderPie = (data, configObj, opt) => {
             },
         }
     }
+    if (opt) {
+        _merge(option, opt)
+    }
+
+    if (configObj.el) {
+        echarts.init(configObj.el).setOption(option, true)
+    }
+
+    return option
+}
+
+/**
+ * 堆叠图
+ * @param {Object} data 图表数据 必须,
+ * @param {[]} data.xAxis x轴
+ * @param {[]} data.yAxis y轴(与data.xAxis二选一)
+ * @param {[]} data.series 必须
+ * @param {Object} configObj 配置项 可选
+ * @param configObj.el 图表绑定的dom元素 可选
+ * @param configObj.color 颜色 可选
+ * @param {String} configObj.unit  数值单位 可选 默认%
+ * @param {Object}  opt 自定义图表option中的属性 可选
+ * @return {Object} 图表配置项
+ * */
+export const renderStackBar = (data, configObj, opt) => {
+    if (!data || !data.series || data.series.length === 0) {
+        return getNoDataOption()
+    }
+
+    let unit = configObj.unit === undefined ? '%' : configObj.unit
+    let legend = []
+    data.series.map((v) => {
+        legend.push(v.name)
+        v.stack = 'one'
+        v.type = 'bar'
+        v.barWidth = '60%'
+        v.barMaxWidth = 20
+    })
+
+    let option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'none',
+            },
+        },
+        grid: {
+            containLabel: true,
+        },
+        color: getColor(configObj.color),
+        legend: LEGEND(),
+        yAxis: {
+            ...AXIS_STYLE(),
+            type: data.yAxis ? 'category' : 'value',
+            data: data.yAxis || null,
+            name: data.yAxis ? '' : unit,
+            axisLabel: {
+                textStyle: {
+                    fontSize: CONFIG.FONT_S,
+                },
+                interval: data.yAxis ? 0 : null,
+            },
+        },
+        xAxis: {
+            ...AXIS_STYLE('y'),
+            type: data.xAxis ? 'category' : 'value',
+            data: data.xAxis || null,
+            name: data.xAxis ? '' : unit,
+            axisLabel: {
+                textStyle: {
+                    fontSize: CONFIG.FONT_S,
+                },
+                interval: data.xAxis ? 0 : null,
+            },
+        },
+        series: data.series,
+    }
+
     if (opt) {
         _merge(option, opt)
     }

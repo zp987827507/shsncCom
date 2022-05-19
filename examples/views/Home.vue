@@ -13,7 +13,8 @@
             showNullLabel:true
         }"
         ></z-pie>
-        <!-- <z-bar
+        <z-stack-bar :data="stackData" style="width: 600px; height: 400px;"></z-stack-bar>
+        <z-bar
             style="width: 500px;height: 400px;"
             :option="option"
             :config="{
@@ -37,7 +38,7 @@
                     }
                 ]
             }"
-        ></z-bar>-->
+        ></z-bar>
 
         <!-- <z-line
             style="width: 600px;height: 400px;"
@@ -72,6 +73,12 @@ export default {
                     axisLabel: {
                         color: 'red',
                         fontSize: 20,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            type: 'dashed',
+                        },
                     },
                 },
                 yAxis: [
@@ -189,6 +196,14 @@ export default {
                             curveness: 0,
                         },
                     },
+                ],
+            },
+            stackData: {
+                xAxis: ['2019年', '2020年', '2021年'],
+                series: [
+                    { name: '剩余', data: [20, 25, 30] },
+                    { name: '数据库', data: [20, 25, 30] },
+                    { name: '其他', data: [60, 50, 40] },
                 ],
             },
         }
