@@ -3,14 +3,14 @@
 #### 代码
 
 ```html
-<dash-board-md
+<z-dash-board
     style="width: 200px;height: 200px;"
     :data="{ value: 60 }"
     :config="{
         color: '#27e4ae',
         fontSize:21
     }"
-></dash-board-md>
+></z-dash-board>
 ```
 
 #### 示例

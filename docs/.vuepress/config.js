@@ -1,6 +1,6 @@
 module.exports = {
     title: '公用组件文档',
-    base: '/shsncCom/',
+    //base: '/shsncCom/',
     themeConfig: {
         nav: [
             {
@@ -10,7 +10,7 @@ module.exports = {
             {
                 //发布在github上的地址
                 text: 'Github',
-                link: 'https://www.baidu.com',
+                link: 'https://github.com/zp987827507/shsncCom',
             },
             {
                 //发布在npm的地址
