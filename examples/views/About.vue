@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+    <div class="about">
+        <z-dash-board style="width: 150px;height: 150px;" :data="{ value: 70 }" :config="{
+              color: '#afa',
+          }"></z-dash-board>
+    </div>
 </template>

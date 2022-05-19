@@ -44,6 +44,7 @@ module.exports = {
                     '/componentsDocs/line',
                     '/componentsDocs/pie',
                     '/componentsDocs/stackbar',
+                    '/componentsDocs/dashboard',
                 ],
             },
             {

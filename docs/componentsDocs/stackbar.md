@@ -48,7 +48,7 @@
 </script>
 ```
 
-<stack-bar-md :data="data" style="width: 600px; height: 300px;"></stack-bar-md>
+<stack-bar-md :data="dataTwo" style="width: 600px; height: 300px;"></stack-bar-md>
 
 ##### 3.指定颜色
 
