@@ -7,10 +7,12 @@ import zLine from './components/line/index'
 import zChart from './components/zChart/index'
 import zPie from './components/pie/index'
 import zStackBar from './components/stackBar/index'
+import zBox from './components/zBox/index'
+
 import { setChartConfig } from './src/util/nomalChart'
 
 let echarts = require('echarts')
-const components = [zButton, zTable, zBar, zLine, zChart, zPie, zStackBar]
+const components = [ zButton, zTable, zBar, zLine, zChart, zPie, zStackBar, zBox ]
 const install = (app) => {
     components.forEach((e) => {
         app.use(e)
