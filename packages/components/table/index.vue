@@ -1,16 +1,22 @@
 <template>
     <div>
-        <el-table :data="tableData" style="width: 100%">
-            <el-table-column prop="date" label="日期" width="180"></el-table-column>
-            <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-            <el-table-column prop="address" label="地址"></el-table-column>
-        </el-table>
+        <elem-table :data="tableData" style="width: 100%">
+            <elem-table-column prop="date" label="日期2" width="180"></elem-table-column>
+            <elem-table-column prop="name" label="姓名2" width="180"></elem-table-column>
+            <elem-table-column prop="address" label="地址2"></elem-table-column>
+        </elem-table>
     </div>
 </template>
 
 <script>
+let elem = require('element-ui')
+console.log(elem, '==22222=')
 export default {
     name: 'zTable',
+    components: {
+        ElemTable: elem.Table,
+        ElemTableColumn: elem.TableColumn,
+    },
     data() {
         return {
             tableData: [

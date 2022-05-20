@@ -10,6 +10,7 @@ import zStackBar from './components/stackBar/index'
 import zDashBoard from './components/dashboard/index'
 import zCylinderBar from './components/cylinder/index'
 import { setChartConfig } from './src/util/nomalChart'
+import 'element-ui/lib/theme-chalk/index.css'
 
 let echarts = require('echarts')
 const components = [zButton, zTable, zBar, zLine, zChart, zPie, zStackBar, zDashBoard, zCylinderBar]
