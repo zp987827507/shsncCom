@@ -30,6 +30,7 @@ export default {
         '#B23F58',
     ],
     pieColor: ['#5470C6', '#91CC75', '#FAC858', '#EE6666', '#73C0DE', '#3BA272'],
+    alarmColor: ['#F56A6A', '#FF8E7A', '#FFBE72', '#FFDD76', '#6BE3DF', '#7ED2FF'],
     //是否显示工具栏
     SHOW_TOOLBOX: false,
     //保存为图片时的填充背景色

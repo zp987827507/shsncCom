@@ -8,11 +8,13 @@ import zChart from './components/zChart/index'
 import zPie from './components/pie/index'
 import zStackBar from './components/stackBar/index'
 import zBox from './components/zBox/index'
-
+import zDashBoard from './components/dashboard/index'
+import zCylinderBar from './components/cylinder/index'
 import { setChartConfig } from './src/util/nomalChart'
+import 'element-ui/lib/theme-chalk/index.css'
 
 let echarts = require('echarts')
-const components = [ zButton, zTable, zBar, zLine, zChart, zPie, zStackBar, zBox ]
+const components = [ zButton, zTable, zBar, zLine, zChart, zPie, zStackBar, zBox, zDashBoard, zCylinderBar ]
 const install = (app) => {
     components.forEach((e) => {
         app.use(e)
@@ -31,6 +33,6 @@ const SHSNC = {
     install,
 }
 //支持按需导入
-export { zButton, zTable, zBar, zLine, zChart, zPie, zStackBar }
+export { zButton, zTable, zBar, zLine, zChart, zPie, zStackBar, zDashBoard, zCylinderBar }
 //导入ZPUI拿到所有的组件
 export default SHSNC

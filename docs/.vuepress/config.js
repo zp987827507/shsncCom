@@ -1,6 +1,6 @@
 module.exports = {
     title: '公用组件文档',
-    base: '/shsncCom/',
+    //base: '/shsncCom/',
     themeConfig: {
         nav: [
             {
@@ -10,7 +10,7 @@ module.exports = {
             {
                 //发布在github上的地址
                 text: 'Github',
-                link: 'https://www.baidu.com',
+                link: 'https://github.com/zp987827507/shsncCom',
             },
             {
                 //发布在npm的地址
@@ -38,14 +38,23 @@ module.exports = {
                 path: '/componentsDocs/chart', // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 collapsable: false, // 是否折叠 默认true折叠
                 sidebarDepth: 1, // 可选的, 默认值是 1
-                children: ['/componentsDocs/chart', '/componentsDocs/bar', '/componentsDocs/line', '/componentsDocs/pie'],
+                children: [
+                    '/componentsDocs/chart',
+                    '/componentsDocs/bar',
+                    '/componentsDocs/line',
+                    '/componentsDocs/pie',
+                    '/componentsDocs/stackbar',
+                    '/componentsDocs/dashboard',
+                    '/componentsDocs/cylinder',
+
+                ],
             },
             {
                 title: '业务组件',
                 path: '/componentsDocs/table',
                 collapsable: false,
                 sidebarDepth: 1,
-                children: ['/componentsDocs/table', '/componentsDocs/input'],
+                children: [ '/componentsDocs/table', '/componentsDocs/input', '/componentsDocs/box' ],
             },
         ],
     },

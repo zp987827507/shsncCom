@@ -2,10 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import shsncCom from '../packages'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI)
+// import elem from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
+// Vue.use(elem)
+
 Vue.use(shsncCom)
 new Vue({
     router,

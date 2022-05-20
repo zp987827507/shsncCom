@@ -512,3 +512,209 @@ export const renderStackBar = (data, configObj, opt) => {
 
     return option
 }
+
+/**
+ * 仪表盘
+ * configObj  Object
+ *   属性如下：
+ *   data  Object  图表数据 必须,
+ *       包含xAxis或yAxis二选一
+ *       series 必须
+ *   el 图表绑定的dom元素 可选 不传时返回option配置项
+ *   color  Arrway  颜色 可选
+ *   unit   String  数值单位 可选 默认%
+ *   max: Number 最大刻度
+ *   min: Number 最小刻度
+ * opt Object  自定义图表option中的属性
+ *
+ * config中配置color 色值为字体色值
+ * */
+
+export const dashboardchart = (configObj, opt) => {
+    let fontColor = '#27e4ae'
+    if (configObj.color) {
+        fontColor = configObj.color
+    }
+    if (configObj.max === undefined || isNaN(configObj.max)) {
+        configObj.max = 100
+    }
+
+    if (configObj.min === undefined || isNaN(configObj.min)) {
+        configObj.min = 0
+    }
+    configObj.unit = configObj.unit || '%'
+    configObj.fontSize = configObj.fontSize || 12
+    let option = {
+        tooltip: {
+            formatter: (value) => value.value + configObj.unit,
+        },
+        series: [
+            {
+                name: '',
+                type: 'gauge',
+                radius: '80%',
+                center: ['50%', '50%'],
+                min: configObj.min,
+                max: configObj.max,
+                splitLine: { show: false },
+                axisTick: { show: false },
+                axisLine: {
+                    lineStyle: {
+                        width: 15,
+                        color: [[1.0, fontColor]],
+                    },
+                },
+                progress: {
+                    show: true,
+                    overlap: false,
+                    roundCap: false,
+                    clip: false,
+                    itemStyle: {
+                        borderWidth: 0,
+                    },
+                },
+                pointer: {
+                    show: true,
+                    width: 8,
+                    itemStyle: {
+                        color: fontColor,
+                    },
+                },
+                axisLabel: {
+                    show: false,
+                },
+                itemStyle: {
+                    color: '#e4e4e4',
+                    borderWidth: 0,
+                },
+                detail: {
+                    fontSize: configObj.fontSize,
+                    formatter: '{value}' + configObj.unit,
+                },
+                data: [{ value: configObj.data.value }],
+            },
+        ],
+    }
+    if (opt) {
+        _merge(option, opt)
+    }
+
+    if (configObj.el) {
+        echarts.init(configObj.el).setOption(option, true)
+    }
+
+    return option
+}
+
+/**
+ * 圆柱图
+ * data  Object  图表数据 必须,
+ *   xAxis 必须
+ *   data 必须
+ * configObj  Object
+ *   属性如下：
+ *   el 图表绑定的dom元素 可选 不传时返回option配置项
+ *   color  Array  颜色 可选
+ *   unit   String  数值单位 可选
+ *   barWidth Number 柱宽 可选
+ * opt Object  自定义图表option中的属性
+ * */
+export const renderCylinderBar = (data, configObj, opt) => {
+    if (!data || !data.data || data.data.length === 0) {
+        return getNoDataOption()
+    }
+
+    let barWidth = configObj.barWidth || 30
+    let color = getColor(configObj.color)
+    let seriesData = []
+    if (configObj.color) {
+        data.data.forEach((v, i) => {
+            seriesData.push({
+                value: v,
+                itemStyle: {
+                    color: color[i] || color[0],
+                },
+            })
+        })
+    } else {
+        seriesData = data.data
+    }
+    let option = {
+        color: color.slice(0, 1),
+        grid: {
+            containLabel: true,
+            left: 0,
+        },
+        xAxis: {
+            type: 'category',
+            data: data.xAxis,
+            offset: 5,
+            axisLabel: {
+                interval: 0,
+                textStyle: {
+                    fontSize: CONFIG.FONT_S,
+                },
+            },
+            axisTick: {
+                show: false,
+            },
+            axisLine: {
+                show: false,
+            },
+        },
+        yAxis: {
+            show: false,
+        },
+        series: [
+            {
+                type: 'pictorialBar',
+                symbolSize: [barWidth, 10],
+                symbolOffset: [0, -5],
+                symbolPosition: 'end',
+                z: 12,
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: CONFIG.FONT_COLOR,
+                        },
+                        show: true,
+                        position: 'top',
+                        formatter: '{c}' + (configObj.unit || ''),
+                    },
+                },
+                silent: true,
+                data: seriesData,
+            },
+            {
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [barWidth, 10],
+                symbolOffset: [0, 5],
+                z: 12,
+                data: seriesData,
+                silent: true,
+            },
+            {
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        opacity: 0.8,
+                    },
+                },
+                barWidth: barWidth,
+                silent: true,
+                data: seriesData,
+            },
+        ],
+    }
+
+    if (opt) {
+        _merge(option, opt)
+    }
+
+    if (configObj.el) {
+        echarts.init(configObj.el).setOption(option, true)
+    }
+
+    return option
+}
