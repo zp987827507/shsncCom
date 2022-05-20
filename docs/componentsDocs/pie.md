@@ -100,7 +100,8 @@ style="width: 400px;height: 300px;"></pie-md>
     :data="pieData"
     :config="{
         type: 'ring',
-        showLegend: false,
+        legentConfig:'right',
+        showLegend: true,
         showLabel:false
     }"
     :option="{
@@ -108,7 +109,7 @@ style="width: 400px;height: 300px;"></pie-md>
             radius: ['50%', '70%']
         }]
     }"
-    style="width: 300; height: 200px;"
+    style="width: 300px; height: 200px;"
 ></z-pie>
 ```
 
@@ -116,15 +117,16 @@ style="width: 400px;height: 300px;"></pie-md>
             :data="pieData"
             :config="{
                 type: 'ring',
-                showLegend: false,
-                showLabel:false
+                showLabel:false,
+                showLegend: true,
+                legentConfig:'right'
             }"
             :option="{
                 series: [{
                     radius: ['50%', '70%']
                 }]
             }"
-            style="width: 300; height: 200px;"
+            style="width: 300px; height: 200px;"
         ></pie-md>
 
 ##### 2.饼图半径修改
@@ -206,3 +208,4 @@ style="width: 400px;height: 300px;"></pie-md>
 | showNullLabel | showLabel 为 true 时，是否显示无数据项的线条文字| boolean | 默认为 false |
 | title | 中间的文字 | string | 默认不显示 |
 | type | 形态类型 | string | 实心圆 circle， 圆环 ring， 玫瑰图 rose， 默认为实心圆 |
+| legentConfig | legend 图例显示位置 | string | 默认 top 值有 'top','bottom','right' |

@@ -132,7 +132,8 @@ export default {
             config1:{
                 showLabel:true,
                 color:['#aaa','#afa'],
-                showFillArea:true
+                showFillArea:true,
+                legentConfig:'right'
             },
             config2:{
                 markLine: [{ name: '目标值', value: 30, color: 'red' }],
@@ -166,3 +167,4 @@ export default {
 | markLine[i].name | 标准线名称 | string | |
 | markLine[i].value | 标准线数值 | number | |
 | markLine[i].color | 标准线颜色 | 默认红色 | |
+| legentConfig | legend 图例显示位置 | string | 默认 top 值有 'top','bottom','right' |

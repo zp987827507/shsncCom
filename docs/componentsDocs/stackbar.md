@@ -57,7 +57,8 @@
     :data="data"
     style="width: 600px; height: 300px;"
     :config="{
-        color: 'alarmColor'
+        color: 'alarmColor',
+        legentConfig:'right'
     }"
 ></z-stack-bar>
 <script>
@@ -82,7 +83,8 @@
     :data="data" 
     style="width: 600px; height: 300px;"
     :config="{
-        color: 'alarmColor'
+        color: 'alarmColor',
+        legentConfig:'right'
     }"
     ></stack-bar-md>
 
@@ -129,3 +131,4 @@
 | --- | --- | --- | --- |
 | color &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 颜色 | array，string | 默认使用常规配色， 指定颜色如["#f00", "#00f"]， 或如"alarmColor"指定使用告警等级颜色 |
 | unit | 数值轴单位 | string | 默认为 "%" 图表为纵向时显示在 y 轴末端，横向时显示在 x 轴末端, 不需要时设置为""。|
+| legentConfig | legend 图例显示位置 | string | 默认 top 值有 'top','bottom','right' |
