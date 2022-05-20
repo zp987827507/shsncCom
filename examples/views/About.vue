@@ -13,6 +13,8 @@
         }"
             style="width: 600px; height: 400px;"
         ></z-cylinder-bar>
+
+        <z-table></z-table>
     </div>
 </template>
 
