@@ -27,15 +27,41 @@ export const getNoDataOption = () => {
     }
 }
 //图例
-export const LEGEND = () => {
-    return {
+export const LEGEND = (configObj) => {
+    let legendCg = {
         top: 10,
-        itemWidth: 8,
-        itemHeight: 8,
-        icon: 'circle',
-        // borderRadius: 0,
-        // symbolKeepAspect: false,
         left: CONFIG.SHOW_TOOLBOX ? 'center' : 'center',
+    }
+    if (configObj && configObj.legentConfig) {
+        switch (configObj.legentConfig) {
+            case 'right':
+                legendCg = {
+                    top: 20,
+                    orient: 'vertical',
+                    left: 'right',
+                }
+                break
+            case 'top':
+                legendCg = {
+                    top: 10,
+                    left: CONFIG.SHOW_TOOLBOX ? 'center' : 'center',
+                }
+                break
+            case 'bottom':
+                legendCg = {
+                    bottom: '8%',
+                    left: 'center',
+                }
+                break
+        }
+    }
+
+    return {
+        type: 'scroll',
+        ...legendCg,
+        itemWidth: 15,
+        itemHeight: 10,
+        icon: 'rect',
         padding: CONFIG.SHOW_TOOLBOX ? [0, 50, 0, 0] : 0,
         textStyle: {
             color: CONFIG.FONT_COLOR,
@@ -192,10 +218,11 @@ export const renderBar = (data, configObj, opt) => {
         }
     })
     let option = {
-        legend: LEGEND(),
+        legend: LEGEND(configObj),
         color: getColor(configObj.color),
         grid: {
             containLabel: true,
+            right: configObj.legentConfig === 'right' ? '20%' : '',
         },
         xAxis: {
             ...AXIS_STYLE('y'),
@@ -283,12 +310,13 @@ export const renderLine = (data, configObj, opt) => {
     })
     let option = {
         legend: {
-            ...LEGEND(),
+            ...LEGEND(configObj),
             //itemWidth: hasBar ? 10 : 20
         },
         color: getColor(configObj.color),
         grid: {
             containLabel: true,
+            right: configObj.legentConfig === 'right' ? '20%' : '',
         },
         xAxis: {
             ...AXIS_STYLE('y'),
@@ -350,7 +378,12 @@ export const renderPie = (data, configObj, opt) => {
     } else {
         configObj.radius = configObj.showLabel ? '60%' : '70%'
     }
-
+    let titleFx = 'center'
+    let centerFx = ['50%', '50%']
+    if (configObj.legentConfig === 'right') {
+        titleFx = '28%'
+        centerFx = ['35%', '50%']
+    }
     //无数据的部分不显示label和连线
     data.forEach((v, i) => {
         if (v && (!v.value || isNaN(v.value))) {
@@ -371,10 +404,10 @@ export const renderPie = (data, configObj, opt) => {
         },
         legend: {
             show: configObj.showLegend,
-            ...LEGEND(),
+            ...LEGEND(configObj),
         },
         title: {
-            left: 'center',
+            left: titleFx,
             top: 'center',
             text: configObj.title,
             subtext: configObj.subtext,
@@ -399,7 +432,7 @@ export const renderPie = (data, configObj, opt) => {
                 type: 'pie',
                 radius: configObj.radius,
                 roseType: configObj.type === 'rose',
-                center: ['50%', '50%'],
+                center: centerFx,
                 label: {
                     show: configObj.showLabel,
                 },
@@ -472,9 +505,10 @@ export const renderStackBar = (data, configObj, opt) => {
         },
         grid: {
             containLabel: true,
+            right: configObj.legentConfig === 'right' ? '20%' : '',
         },
         color: getColor(configObj.color),
-        legend: LEGEND(),
+        legend: LEGEND(configObj),
         yAxis: {
             ...AXIS_STYLE(),
             type: data.yAxis ? 'category' : 'value',

@@ -5,21 +5,25 @@
             :data="pieData"
             style="width: 400px;height: 400px;"
             :config="{
-            color: 'pieColor',
-            type: 'rose',
-            title: '总个数\n300',
-            showLabel:false,
-            showLegend: true,
-            showNullLabel:true
-        }"
+                color: 'pieColor',
+                type: 'rose',
+                title: '总个数\n300',
+                showLabel:false,
+                showLegend: true,
+                showNullLabel:true,
+                legentConfig:'right',
+            }"
         ></z-pie>
-        <z-stack-bar :data="stackData" style="width: 600px; height: 400px;"></z-stack-bar>
+        <z-stack-bar :data="stackData" style="width: 600px; height: 400px;" :config="{
+              legentConfig:'right',
+            }"></z-stack-bar>
         <z-bar
             style="width: 500px;height: 400px;"
             :option="option"
             :config="{
               unit:'ml',
-              showLabel:true
+              showLabel:true,
+              legentConfig:'top',
             }"
             :data="{
                 xAxis: ['1月', '2月', '3月', '4月', '5月', '9月'],
@@ -80,6 +84,9 @@ export default {
                             type: 'dashed',
                         },
                     },
+                },
+                legend: {
+                    icon: 'circle',
                 },
                 yAxis: [
                     {

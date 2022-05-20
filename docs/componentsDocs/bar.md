@@ -50,6 +50,7 @@
                 config: {
                     unit: 'mg/L',
                     showLabel: true,
+                    legentConfig: 'right',
                 },
             }
         },
@@ -128,6 +129,7 @@
                 config: {
                     unit: 'mg/L',
                     showLabel: true,
+                    legentConfig: 'right',
                 },
             }
         },
@@ -153,3 +155,4 @@
 | color | 颜色 | array，string | 默认使用常规配色， 指定颜色如["#f00", "#00f"]|
 | showLabel | 是否显示数值文字 | boolean | 默认为 false |
 | unit | y 轴数值单位 | string | 默认不显示 |
+| legentConfig | legend 图例显示位置 | string | 默认 top 值有 'top','bottom','right' |

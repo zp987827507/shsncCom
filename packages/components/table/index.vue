@@ -10,7 +10,6 @@
 
 <script>
 let elem = require('element-ui')
-console.log(elem, '==22222=')
 export default {
     name: 'zTable',
     components: {
