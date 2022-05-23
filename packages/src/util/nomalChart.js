@@ -62,6 +62,7 @@ export const LEGEND = (configObj) => {
         itemWidth: 15,
         itemHeight: 10,
         icon: 'rect',
+        with: 100,
         padding: CONFIG.SHOW_TOOLBOX ? [0, 50, 0, 0] : 0,
         textStyle: {
             color: CONFIG.FONT_COLOR,

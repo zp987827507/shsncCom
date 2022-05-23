@@ -20,6 +20,7 @@
             :config="{
                 unit: 'ml',
                 showLabel: true,
+                legentConfig: 'right',
             }"
             :data="{
                 xAxis: ['1月', '2月', '3月', '4月', '5月', '9月'],
@@ -218,7 +219,9 @@ export default {
     // })
   },
   methods: {
-
-  }
+    checkDetail () {
+      console.log('/////////')
+    },
+  },
 }
 </script>
