@@ -1,0 +1,18 @@
+.zTableCom{
+    .el-table{
+        .el-table__cell{
+            padding: 0;
+            font-size: 12px;
+            color: #333333;
+            letter-spacing: 0;
+            font-weight: 500;
+            height: 34px;
+        }
+        th.el-table__cell{
+            background: #F0F6FF;
+        }
+        td.el-table__cell{
+            color: #666;
+        }
+    }
+}

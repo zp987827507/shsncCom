@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="zTableCom">
         <el-table
             :data="data"
             :max-height="maxHeight"

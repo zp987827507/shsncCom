@@ -6,8 +6,8 @@
             <!-- v-slot:operation="slotData" 指定插槽和获取插槽传入得数据 -->
             <template v-slot:operation="slotData">
                 <!-- 获取slot传入得数据 -->
-                <el-button type="primary" @click="edit(slotData.data)">编辑</el-button>
-                <el-button>删除</el-button>
+                <el-button size="mini" type="primary" @click="edit(slotData.data)">编辑</el-button>
+                <el-button size="mini">删除</el-button>
             </template>
         </z-table>
     </div>

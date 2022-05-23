@@ -11,7 +11,7 @@ import zBox from './components/zBox/index'
 import zDashBoard from './components/dashboard/index'
 import zCylinderBar from './components/cylinder/index'
 import { setChartConfig } from './src/util/nomalChart'
-//import 'element-ui/lib/theme-chalk/index.css'
+import './src/css/style.scss'
 
 let echarts = require('echarts')
 const components = [zButton, zTable, zBar, zLine, zChart, zPie, zStackBar, zBox, zDashBoard, zCylinderBar]
