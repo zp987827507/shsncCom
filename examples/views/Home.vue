@@ -52,22 +52,6 @@
         ></z-line>
 
         <z-chart style="width: 600px;height: 400px;" :option="option2"></z-chart>-->
-        <div style="width: 500px; height: 300px">
-            <z-box title="饼图" btnText="查看" showBtn :height="200" @checkDetail="checkDetail">
-                <z-pie
-                    :data="pieData"
-                    style="width: 400px; height: 400px"
-                    :config="{
-                        color: 'pieColor',
-                        type: 'rose',
-                        title: '总个数\n300',
-                        showLabel: false,
-                        showLegend: true,
-                        showNullLabel: true,
-                    }"
-                ></z-pie>
-            </z-box>
-        </div>
     </div>
 </template>
 
@@ -234,9 +218,7 @@ export default {
     // })
   },
   methods: {
-    checkDetail () {
-      console.log('/////////')
-    }
+
   }
 }
 </script>

@@ -2,23 +2,19 @@
     <div class="box">
         <p class="box-header">
             <span class="title">{{ title }}</span>
-            <elem-button type="primary" plain size="small" @click="checkDetail" v-if="showBtn">{{ btnText }}</elem-button>
+            <slot name="header" class="header-slot"></slot>
+            <el-button type="primary" plain size="small" @click="checkDetail" v-if="showBtn">{{ btnText }}</el-button>
         </p>
         <div class="box-content" :style="contentHeight ? 'height:' + contentHeight : ''">
-            <slot></slot>
+            <slot name="content"></slot>
         </div>
     </div>
 </template>
 
 <script>
-let elem = require('element-ui')
 
 export default {
   name: 'ZBox',
-  components: {
-    ElemButton: elem.Button,
-
-  },
   props: {
     title: {
       type: String,
@@ -80,6 +76,10 @@ export default {
         .title {
             font-size: 14px;
             color: #666;
+            white-space: nowrap;
+        }
+        .header-slot {
+            flex: 1;
         }
     }
     .box-content {

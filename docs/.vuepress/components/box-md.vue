@@ -2,23 +2,19 @@
     <div class="box">
         <p class="box-header">
             <span class="title">{{ title }}</span>
-            <elem-button type="primary" plain size="small" @click="checkDetail" v-if="showBtn">{{ '查看明细' }}</elem-button>
+            <slot name="header" class="header-slot"></slot>
+            <el-button type="primary" plain size="small" @click="checkDetail" v-if="showBtn">{{ btnText }}</el-button>
         </p>
-        <div class="box-content" :style="height ? 'height:' + height : ''">
-            <slot></slot>
+        <div class="box-content" :style="contentHeight ? 'height:' + contentHeight : ''">
+            <slot name="content"></slot>
         </div>
     </div>
 </template>
 
 <script>
-let elem = require('element-ui')
 
 export default {
   name: 'ZBox',
-  components: {
-    ElemButton: elem.Button,
-
-  },
   props: {
     title: {
       type: String,
@@ -33,10 +29,26 @@ export default {
       default: '查看明细'
     },
     height: {
-      type: String,
+      type: [ String, Number ],
       default: ''
     }
-
+  },
+  data () {
+    return {
+      contentHeight: ''
+    }
+  },
+  watch: {
+    height: {
+      handler: function (val) {
+        if (typeof val === 'number' && !isNaN(val)) {
+          this.contentHeight = val + 'px'
+        } else {
+          this.contentHeight = val
+        }
+      },
+      immediate: true
+    },
   },
   methods: {
     checkDetail () {
@@ -64,6 +76,10 @@ export default {
         .title {
             font-size: 14px;
             color: #666;
+            white-space: nowrap;
+        }
+        .header-slot {
+            flex: 1;
         }
     }
     .box-content {

@@ -5,8 +5,12 @@
 ##### 1.基本用法
 
 ```html
-<box-md title="饼图" showBtn @checkDetail="checkDetail">
+<z-box title="饼图" showBtn @checkDetail="checkDetail">
+    <div slot="header" class="search-rule">
+        <el-input v-model="name" placeholder="请输入"></el-input>
+    </div>
     <z-pie
+        slot="content"
         :data="pieData"
         style="width: 400px; height: 400px"
         :config="{
@@ -18,7 +22,7 @@
             showNullLabel: true,
         }"
     ></z-pie>
-</box-md>
+</z-box>
 ```
 
 ```html
@@ -26,6 +30,7 @@
     export default {
         data() {
             return {
+                name: '',
                 pieData: [
                     { name: 'Ⅰ类', value: 5 },
                     { name: 'Ⅱ类', value: 5 },
@@ -47,7 +52,11 @@
 
 <div style="padding:20px;background-color:#ddd">
     <box-md title="饼图" showBtn @checkDetail="checkDetail">
+        <div slot="header" class="search-rule">
+            <el-input v-model="name" placeholder="请输入"></el-input>
+        </div>
         <pie-md
+             slot="content"
             :data="pieData"
             style="width: 400px; height: 400px"
             :config="{
@@ -66,6 +75,7 @@
     export default {
         data() {
             return {
+                name:'',
                 pieData: [
                     { name: 'Ⅰ类', value: 5 },
                     { name: 'Ⅱ类', value: 5 },
@@ -83,6 +93,20 @@
         },
     }
 </script>
+<style lang="scss" scoped>
+.search-rule {
+    width: 100%;
+    text-align: right;
+    padding-right: 10px;
+    .el-input {
+        width: 200px;
+    }
+    ::v-deep .el-input__inner {
+        height: 30px;
+        line-height: 30px;
+    }
+}
+</style>
 
 #### 参数配置项
 
@@ -92,6 +116,7 @@
 | showBtn | 是否显示右侧按钮 | Boolean       | 默认不显示                                                                             |
 | btnText | 按钮文字         | string        | 默认‘查看明细’                                                                         |
 | height  | 内容的高度       | string/number | 默认为'',可以传以 px 为单位的字符串或数字，例如：400px ,一般不建议传值，由内容撑开高度 |
+| slot    | 插槽             | string        | 传值支持 header/content,header 为标题栏插槽，content 为内容插槽                        |
 
 #### 事件
 
